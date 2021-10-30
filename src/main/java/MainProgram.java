@@ -30,9 +30,61 @@ public class MainProgram {
 
             if (ans.equals("A")) {
                 obj1.addingdata();
+            } else if (ans.equals("E")) {
+                obj1.edittingdata();
+            } else if (ans.equals("D")) {
+                obj1.deletingdata();
             }
-
         }
+    }
+
+    private void deletingdata()  throws SQLException, ClassNotFoundException {
+        String catcode;
+        Category catr;
+
+        Scanner key = new Scanner(System.in);
+
+        System.out.println("Enter a category code ");
+        catcode = key.nextLine();
+        catr = obj.search(catcode);
+
+        if (catr == null) {
+            System.out.println("Record your trying to delete does not exist");
+            return;
+        }
+
+        obj.delete(catcode);
+        obj.display();
+    }
+
+    private void edittingdata() throws SQLException, ClassNotFoundException {
+        String catcode, catdesc;
+        Category cat, catr;
+        String oldccode;
+
+        Scanner key = new Scanner(System.in);
+
+        System.out.println("Enter a category code ");
+        catcode = key.nextLine();
+        catr = obj.search(catcode);
+
+        if (catr == null) {
+            System.out.println("Record your trying to edit does not exist");
+            return;
+        }
+
+        oldccode = catr.getCatcode();
+        System.out.println("Enter the new code");
+        catcode = key.nextLine();
+
+        System.out.println("Enter the new category description");
+        catdesc = key.nextLine();
+
+        cat = new Category(catcode, catdesc);
+        obj.edit(cat, oldccode);
+        catr = obj.search(catcode);
+        obj.display();
+
     }
 
     private void addingdata() throws SQLException, ClassNotFoundException {

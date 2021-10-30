@@ -27,7 +27,7 @@ public class DAO_Implementation implements DAOInterface {
 
     @Override
     public Category edit(Category cat, String ccat) throws SQLException, ClassNotFoundException {
-        PreparedStatement query = con3.prepareStatement("Update category set catcode=?, catdesc=? where catecode = ?");
+        PreparedStatement query = con3.prepareStatement("Update category set catcode=?, catdesc=? where catcode = ?");
 
         query.setString(1, cat.getCatcode());
         query.setString(2, cat.getCatdesc());
@@ -67,7 +67,7 @@ public class DAO_Implementation implements DAOInterface {
             System.out.println();
 
             System.out.print("Category code: " + obj1.getCatcode() + " ");
-            System.out.print("Category DEscription " + obj1.getCatdesc());
+            System.out.print("Category Description " + obj1.getCatdesc());
         }
     }
 
